@@ -72,6 +72,16 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
+    // Retrofit OkHttp & Moshi
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.squareup.converter.moshi)
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin) // perlu ini untuk KotlinJsonAdapterFactory
+    ksp(libs.moshi.kotlin.codegen)     // optional: auto-generate adapters
+
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
