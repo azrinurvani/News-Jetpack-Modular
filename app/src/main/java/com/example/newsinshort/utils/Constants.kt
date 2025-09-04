@@ -8,8 +8,10 @@ object Constants {
     /*
     * Constants TIME_OUT Retrofit
     * */
-    const val READ_TIME_OUT = 45L
-    const val CONNECT_TIME_OUT = 30L
+    const val READ_TIME_OUT = 30L
+    const val CONNECT_TIME_OUT = 10L
     const val CALL_TIME_OUT = 30L
-    const val WRITE_TIME_OUT = 45L
+    const val WRITE_TIME_OUT = 30L
+
+    const val COUNTRY = "us"
 }

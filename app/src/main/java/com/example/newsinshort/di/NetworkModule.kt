@@ -33,9 +33,9 @@ object NetworkModule  {
         return OkHttpClient()
             .newBuilder()
             .apply { addInterceptor(loggingInterceptor) }
-            .connectTimeout(Constants.CONNECT_TIME_OUT, TimeUnit.MILLISECONDS)
-            .callTimeout(Constants.CALL_TIME_OUT, TimeUnit.MILLISECONDS)
-            .readTimeout(Constants.READ_TIME_OUT, TimeUnit.MILLISECONDS)
+            .connectTimeout(Constants.CONNECT_TIME_OUT, TimeUnit.SECONDS)
+            .callTimeout(Constants.CALL_TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(Constants.READ_TIME_OUT, TimeUnit.SECONDS)
             .build()
     }
 
