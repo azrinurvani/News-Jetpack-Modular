@@ -5,7 +5,6 @@ import com.example.newsinshort.data.datasource.NewsDataSource
 import com.example.newsinshort.data.entity.NewsResponse
 import com.example.utilities.ResourceState
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 
 import javax.inject.Inject
@@ -13,10 +12,6 @@ import javax.inject.Inject
 class NewsRepository @Inject constructor(
     private val newsDataSource: NewsDataSource
 ) {
-
-//    suspend fun getNewsHeadlines(country: String) : Response<NewsResponse> {
-//        return newsDataSource.getNewsHeadlines(country)
-//    }
 
     fun getNewsHeadlines(country : String) : Flow<ResourceState<NewsResponse>> = flow {
         try {
@@ -31,7 +26,7 @@ class NewsRepository @Inject constructor(
             }
         }catch (t: Throwable){
             Log.e("NEWS-REPO", "Exception when request: ${t::class.java.simpleName} | ${t.localizedMessage}", t)
-            emit(ResourceState.Error(errorMessage = t?.localizedMessage.toString() ?: "Some Error in flow"))
+            emit(ResourceState.Error(errorMessage = t.message.toString()))
         }
     }
 }

@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.newsinshort.data.entity.NewsResponse
 import com.example.newsinshort.ui.components.Loader
+import com.example.newsinshort.ui.components.NewsList
 import com.example.newsinshort.ui.viewmodel.NewsViewModel
 import com.example.utilities.ResourceState
 
@@ -34,7 +35,8 @@ fun HomeScreen(
                 Loader()
             }
             is ResourceState.Success -> {
-                Log.d(TAG, "Fetch data Success...")
+                val response = (newsResponse as ResourceState.Success<NewsResponse>).data
+                NewsList(response)
             }
             is ResourceState.Error -> {
                 Log.d(TAG, "Error Fetching Data ${(newsResponse as ResourceState.Error<NewsResponse>).errorMessage}")

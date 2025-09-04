@@ -19,7 +19,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class NewsResponse(
     @field:Json(name = "articles")
-    val articles: List<Article> = listOf(),
+    val articles: List<Article?>? = listOf(),
 
     @field:Json(name = "status")
     val status: String = "",

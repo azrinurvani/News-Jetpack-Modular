@@ -18,8 +18,8 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Source(
     @field:Json(name = "id")
-    val id: String = "",
+    val id: String? = "",
 
     @field:Json(name = "name")
-    val name: String = ""
+    val name: String? = ""
 )
