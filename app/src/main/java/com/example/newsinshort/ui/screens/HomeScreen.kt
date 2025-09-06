@@ -28,9 +28,9 @@ fun HomeScreen(
     val newsResponse by newsViewModel.news.collectAsState()
 
     val itemCount = when(newsResponse){
-        is ResourceState.Success -> (newsResponse as ResourceState.Success<NewsResponse>).data.articles?.size ?: 1 //size satu untuk menampilkan card jika tidak ada data
+        is ResourceState.Success -> (newsResponse as ResourceState.Success<NewsResponse>).data.articles?.size ?: 0 //size satu untuk menampilkan card jika tidak ada data
         is ResourceState.Loading -> 0
-        is ResourceState.Error -> 1 //size satu untuk menampilkan card untuk tampilan error state
+        is ResourceState.Error -> 0 //size satu untuk menampilkan card untuk tampilan error state
     }
 
     val pagerState = rememberPagerState(
@@ -40,30 +40,33 @@ fun HomeScreen(
         itemCount
     }
 
-    VerticalPager(
-        state = pagerState,
-        modifier = Modifier
-            .fillMaxSize(),
-        pageSize = PageSize.Fill,
-        pageSpacing = 8.dp
-    ) { page->
-        when(newsResponse){
-            is ResourceState.Loading -> {
-                Log.d(TAG, "Loading...")
-                Loader()
-            }
-            is ResourceState.Success -> {
-                val response = (newsResponse as ResourceState.Success<NewsResponse>).data
-                if (response.articles?.isNotEmpty() == true){
+    when(newsResponse) {
+        is ResourceState.Loading -> {
+            Log.d(TAG, "Loading...")
+            Loader()
+        }
+
+        is ResourceState.Success -> {
+            val response = (newsResponse as ResourceState.Success<NewsResponse>).data
+            if (response.articles?.isNotEmpty() == true) {
+                VerticalPager(
+                    state = pagerState,
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    pageSize = PageSize.Fill,
+                    pageSpacing = 8.dp
+                ) { page->
                     NewsRowComponent(page, response.articles[page])
-                }else{
-                    EmptyStateComponent()
                 }
-            }
-            is ResourceState.Error -> {
-                ErrorState(message = (newsResponse as ResourceState.Error<NewsResponse>).errorMessage)
+            } else {
+                EmptyStateComponent()
             }
         }
+
+        is ResourceState.Error -> {
+            ErrorState(message = (newsResponse as ResourceState.Error<NewsResponse>).errorMessage)
+        }
+
     }
 }
 
