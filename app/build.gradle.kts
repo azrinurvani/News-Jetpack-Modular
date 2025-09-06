@@ -91,4 +91,9 @@ dependencies {
 
     //Core Splash Screen
     implementation(libs.androidx.core.splashscreen)
+
+    //Coil Image
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 }

@@ -1,12 +1,10 @@
 package com.example.newsinshort.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.newsinshort.data.entity.NewsResponse
 import com.example.newsinshort.ui.repository.NewsRepository
-import com.example.newsinshort.utils.Constants
+import com.example.utilities.Constants.Constants
 import com.example.utilities.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -36,10 +34,5 @@ class NewsViewModel @Inject constructor(
                 _news.value = response
             }
         }
-    }
-
-
-    companion object {
-        private const val TAG = "NewsViewModel"
     }
 }

@@ -1,7 +1,8 @@
 package com.example.newsinshort.data.api
 
 import com.example.newsinshort.data.entity.NewsResponse
-import com.example.newsinshort.utils.Constants
+import com.example.utilities.Constants.Constants
+
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

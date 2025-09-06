@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsInShort</string>
+    <string name="empty_state_message">No News as of now\nPlease check in some time !</string>
 </resources>
