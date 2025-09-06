@@ -29,8 +29,7 @@ fun HomeScreen(
 
     val itemCount = when(newsResponse){
         is ResourceState.Success -> (newsResponse as ResourceState.Success<NewsResponse>).data.articles?.size ?: 0 //size satu untuk menampilkan card jika tidak ada data
-        is ResourceState.Loading -> 0
-        is ResourceState.Error -> 0 //size satu untuk menampilkan card untuk tampilan error state
+        else -> 0
     }
 
     val pagerState = rememberPagerState(
