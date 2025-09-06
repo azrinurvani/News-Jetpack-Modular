@@ -1,17 +1,14 @@
 package com.example.newsinshort.ui.screens
 
 import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,7 +16,6 @@ import com.example.newsinshort.data.entity.NewsResponse
 import com.example.newsinshort.ui.components.EmptyStateComponent
 import com.example.newsinshort.ui.components.ErrorState
 import com.example.newsinshort.ui.components.Loader
-import com.example.newsinshort.ui.components.NewsList
 import com.example.newsinshort.ui.components.NewsRowComponent
 import com.example.newsinshort.ui.viewmodel.NewsViewModel
 import com.example.utilities.ResourceState
@@ -31,12 +27,17 @@ fun HomeScreen(
 ){
     val newsResponse by newsViewModel.news.collectAsState()
 
+    val itemCount = when(newsResponse){
+        is ResourceState.Success -> (newsResponse as ResourceState.Success<NewsResponse>).data.articles?.size ?: 1 //size satu untuk menampilkan card jika tidak ada data
+        is ResourceState.Loading -> 0
+        is ResourceState.Error -> 1 //size satu untuk menampilkan card untuk tampilan error state
+    }
+
     val pagerState = rememberPagerState(
         initialPage = 0,
         initialPageOffsetFraction = 0f
     ){
-        //item counts
-        100 //example size
+        itemCount
     }
 
     VerticalPager(
@@ -52,8 +53,7 @@ fun HomeScreen(
                 Loader()
             }
             is ResourceState.Success -> {
-                var response = (newsResponse as ResourceState.Success<NewsResponse>).data
-                response.articles
+                val response = (newsResponse as ResourceState.Success<NewsResponse>).data
                 if (response.articles?.isNotEmpty() == true){
                     NewsRowComponent(page, response.articles[page])
                 }else{

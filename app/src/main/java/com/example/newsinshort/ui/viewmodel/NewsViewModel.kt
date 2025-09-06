@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newsinshort.data.entity.NewsResponse
 import com.example.newsinshort.ui.repository.NewsRepository
-import com.example.utilities.Constants.Constants
+import com.example.utilities.Constants
 import com.example.utilities.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

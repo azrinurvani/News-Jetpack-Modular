@@ -95,7 +95,8 @@ fun HeadingTextComponent(value : String, centerAligned : Boolean = false) {
             .wrapContentHeight(),
         style = TextStyle(
             fontSize = 24.sp,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
+            color = Color.Black
         ),
         textAlign = if (centerAligned) TextAlign.Center else TextAlign.Start
     )
@@ -153,7 +154,8 @@ fun FooterTextComponent(value : String){
         text = value,
         style = TextStyle(
             fontSize = 14.sp,
-            fontWeight = FontWeight.Light
+            fontWeight = FontWeight.Light,
+            color = Color.Black
         ),
         maxLines = 1,
         overflow = TextOverflow.Ellipsis

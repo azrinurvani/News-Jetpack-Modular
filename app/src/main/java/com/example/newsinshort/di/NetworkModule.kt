@@ -2,7 +2,7 @@ package com.example.newsinshort.di
 
 import android.util.Log
 import com.example.newsinshort.data.api.ApiService
-import com.example.utilities.Constants.Constants
+import com.example.utilities.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
