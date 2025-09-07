@@ -1,6 +1,7 @@
 package com.example.newsinshort.di
 
 import android.util.Log
+import com.example.newsinshort.BuildConfig
 import com.example.newsinshort.data.api.ApiService
 import com.example.utilities.Constants
 import com.squareup.moshi.Moshi
@@ -24,7 +25,12 @@ object NetworkModule  {
         return HttpLoggingInterceptor{ message->
             Log.d("NEWS-API", message)
         }.apply {
-            level = HttpLoggingInterceptor.Level.BODY
+            if (BuildConfig.DEBUG){
+                level = HttpLoggingInterceptor.Level.BODY
+            }else{
+                level = HttpLoggingInterceptor.Level.NONE
+            }
+
         }
     }
 

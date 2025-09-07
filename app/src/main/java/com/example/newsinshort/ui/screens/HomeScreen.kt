@@ -1,6 +1,5 @@
 package com.example.newsinshort.ui.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.PageSize
 import androidx.compose.foundation.pager.VerticalPager
@@ -20,7 +19,7 @@ import com.example.newsinshort.ui.components.NewsRowComponent
 import com.example.newsinshort.ui.viewmodel.NewsViewModel
 import com.example.utilities.ResourceState
 
-private const val TAG = "HomeScreen"
+//private const val TAG = "HomeScreen"
 @Composable
 fun HomeScreen(
     newsViewModel: NewsViewModel = hiltViewModel()
@@ -41,7 +40,6 @@ fun HomeScreen(
 
     when(newsResponse) {
         is ResourceState.Loading -> {
-            Log.d(TAG, "Loading...")
             Loader()
         }
 
